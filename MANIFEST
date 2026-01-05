@@ -5,5 +5,7 @@ lib/Datafile/Array.pm
 lib/Datafile/Hash.pm
 t/01-array-basic.t
 t/02-array-csv.t
-t/03-hash-flat.t
-t/04-hash-ini.t
+t/03-array-prefix.t
+t/04-hash-flat.t
+t/05-hash-ini.t
+t/06-hash-nested.t
