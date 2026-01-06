@@ -1,5 +1,5 @@
 Makefile.PL
-README
+README.md
 MANIFEST
 lib/Datafile/Array.pm
 lib/Datafile/Hash.pm
@@ -9,3 +9,4 @@ t/03-array-prefix.t
 t/04-hash-flat.t
 t/05-hash-ini.t
 t/06-hash-nested.t
+t/07-csv-parser.t
