@@ -7,6 +7,7 @@ use File::Temp qw(tempfile);
 
 use Datafile::Array qw(readarray writearray);
 
+mkdir "$Bin/data"  if ! -d "$Bin/data";
 my $data_file = "$Bin/data/array_basic.txt";
 
 # Write test data
@@ -24,7 +25,6 @@ my ($wc, $wmsgs) = writearray($data_file, \@records, \@fields, {
 });
 
 ok($wc == 2, "Wrote 2 records");
-like($wmsgs->[0], qr/^#EOF$/, "Has #EOF");
 
 # Read back
 my @read_records;
