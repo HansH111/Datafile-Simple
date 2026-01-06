@@ -126,12 +126,10 @@ Handles flat key-value files and full INI-style files with multi-level sections.
 - delimiter       => '='     (default)  
   '=' or ':' → INI mode with sections and quoting  
   Anything else → flat key-value mode
-
 - group           => 2       (default)  
   0 = flat hash (ignore sections)  
   1 = dotted keys (section.sub.key)  
   2 = nested hashes (recommended)
-
 - key_fields      => 1       (flat mode only)
 - skip_empty      => 1
 - skip_headers    => 0       (skip leading banner lines)
@@ -159,7 +157,7 @@ Both modules:
 
 ## License
 
-This distribution is free software. You can redistribute it and/or modify it under the same terms as Perl itself.
+This module is free software. 
+You can redistribute it and/or modify it under the same terms as Perl itself.
 
-Version: 1.05  
-Date: January 2026
+See the official Perl licensing terms: https://dev.perl.org/licenses/
