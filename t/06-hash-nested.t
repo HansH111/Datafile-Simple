@@ -6,6 +6,7 @@ use FindBin qw($Bin);
 
 use Datafile::Hash qw(readhash writehash);
 
+mkdir "$Bin/data"  if ! -d "$Bin/data";
 my $deep_file = "$Bin/data/deep.ini";
 
 my %deep = (
