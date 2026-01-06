@@ -6,6 +6,7 @@ use FindBin qw($Bin);
 
 use Datafile::Array qw(readarray writearray);
 
+mkdir "$Bin/data"  if ! -d "$Bin/data";
 my $prefix_file = "$Bin/data/array_prefix.txt";
 
 my @records = (
