@@ -6,6 +6,7 @@ use FindBin qw($Bin);
 
 use Datafile::Hash qw(readhash writehash);
 
+mkdir "$Bin/data"  if ! -d "$Bin/data";
 my $flat_file = "$Bin/data/hash_flat.txt";
 
 my %data = (
