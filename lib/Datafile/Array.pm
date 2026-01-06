@@ -265,19 +265,20 @@ sub readarray {
     while (my $line = <$fh>) {
         next if $line =~ /^\s*\Q$comment\E/;
         $line =~ s/[\r\n\s]+$//;
-        next if $skip_empty && $line eq '';
 
         my @fields;
         if ($csv) {
+           $csvline.="\n"  if $csvline ne '';
            $csvline.=$line;
-	   my $quota_count = () = $csvline =~ /\Q"\E/g;
-	   next unless $quota_count % 2 == 0 && $csvline =~ /"[^"]*$/;  # ends with quote not in middle
+           my $count = () = $csvline =~ /\Q"\E/g;
+           next unless $count % 2 == 0 && ($count == 0 || $csvline =~ /"[^"]*$/);
            @fields = parse_csv_line($csvline,$delim);
-	   $line = $csvline;
-	   $csvline = '';
-        } else {
+           $line = $csvline;
+           $csvline = '';
+		} else {
            @fields = split $delim_re, $line, -1;
         }
+        next if $skip_empty && $line eq '';
 
         # Handle header line(s)
         unless ($header_done) {
