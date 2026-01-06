@@ -6,6 +6,7 @@ use FindBin qw($Bin);
 
 use Datafile::Hash qw(readhash writehash);
 
+mkdir "$Bin/data"  if ! -d "$Bin/data";
 my $ini_file = "$Bin/data/config.ini";
 
 my %config = (
