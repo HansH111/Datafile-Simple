@@ -12,7 +12,7 @@ Both modules share the same design philosophy:
 - Verbose messaging support
 - UTF-8 encoding
 
-[![Perl](https://img.shields.io/badge/perl-5.006%2B-brightgreen)](https://www.perl.org/)
+[![Perl](https://img.shields.io/badge/perl-5.010%2B-brightgreen)](https://www.perl.org/)
 [![License](https://img.shields.io/badge/license-Perl-orange)](https://dev.perl.org/licenses/)
 
 ## Installation
