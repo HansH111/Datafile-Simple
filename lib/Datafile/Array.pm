@@ -6,7 +6,7 @@ use 5.010;
 use Exporter 'import';
 use Carp;
 
-our @EXPORT_OK = qw(readarray writearray);
+our @EXPORT_OK = qw(readarray writearray parse_csv_line);
 our $VERSION   = '1.05';
 
 =head1 NAME
@@ -135,6 +135,22 @@ String or arrayref of comment lines to write at top.
 
 =back
 
+=head2 parse_csv_line($line, [$delimiter = ','])
+
+Standalone lightweight CSV line parser.
+
+Parses a single line according to CSV rules:
+- Handles quoted fields
+- Escaped quotes via ""
+- Fields containing delimiter, newlines, or quotes
+- Lenient on unclosed quotes (treats rest as literal)
+
+Returns array of fields.
+
+Example:
+  my @fields = parse_csv_line(q{hello,"world","say ""hi"""}, ',');
+  # @fields = ('hello', 'world', 'say "hi"')
+
 =cut
 
 # Helper to trim whitespace
@@ -145,8 +161,9 @@ sub _trim {
     return $value;
 }
 
-# Helper to scan a CSV line and return the fields in an array
-sub _csv_parse {
+
+# scan a CSV line and return the fields in an array
+sub parse_csv_line {
     my ($line, $sep) = @_;
     $sep //= ',';
     my @fields;
@@ -255,7 +272,7 @@ sub readarray {
            $csvline.=$line;
 	   my $quota_count = () = $csvline =~ /\Q"\E/g;
 	   next unless $quota_count % 2 == 0 && $csvline =~ /"[^"]*$/;  # ends with quote not in middle
-           @fields = _csv_parse($csvline,$delim);
+           @fields = parse_csv_line($csvline,$delim);
 	   $line = $csvline;
 	   $csvline = '';
         } else {
