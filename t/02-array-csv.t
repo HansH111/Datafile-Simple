@@ -6,6 +6,7 @@ use FindBin qw($Bin);
 
 use Datafile::Array qw(readarray writearray);
 
+mkdir "$Bin/data"  if ! -d "$Bin/data";
 my $csv_file = "$Bin/data/array_csv.txt";
 
 my $csv_content = <<'CSV';
@@ -28,11 +29,10 @@ my ($rc, $msgs) = readarray($csv_file, \@records, \@fields, {
     csvquotes  => 1,
     has_headers => 1,
 });
-
 is($rc, 3, "Read 3 CSV records");
 is($records[0]{name}, 'Alice', "Simple field");
 is($records[1]{note}, "Line1\nLine2", "Multi-line field preserved");
-is($records[2]{id}, 'Charlie;X', "Quoted delimiter preserved");
+is($records[2]{name}, 'Charlie;X', "Quoted delimiter preserved");
 
 unlink $csv_file;
 done_testing;
