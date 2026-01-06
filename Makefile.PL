@@ -27,6 +27,11 @@ WriteMakefile(
             },
         },
         provides => {
+	        # Primary package matching distribution name
+            'Datafile::Simple' => {
+                file    => 'lib/Datafile/Array.pm',  # can point to any file in the dist
+                version => '1.05',
+            },
             'Datafile::Array' => {
                 file    => 'lib/Datafile/Array.pm',
                 version => '1.05',
